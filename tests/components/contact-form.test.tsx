@@ -8,12 +8,12 @@ import { act } from 'react-dom/test-utils'
 
 describe('Testing contact-form.tsx', () => {
   beforeEach(() => {
-    jest.restoreAllMocks() 
+    jest.restoreAllMocks()
   })
   afterEach(() => {
     fetchMock.resetMocks()
   })
-  let emailInput : HTMLElement
+  let emailInput: HTMLElement
   let nameInput: HTMLElement
   let messageInput: HTMLElement
   let sendButton: HTMLElement
@@ -33,7 +33,7 @@ describe('Testing contact-form.tsx', () => {
     expect(component).toBeInTheDocument()
   })
 
-  it('Should have all input components', async() => {
+  it('Should have all input components', async () => {
     expect(form).toBeInTheDocument()
 
     expect(emailInput).toBeInTheDocument()
@@ -43,8 +43,6 @@ describe('Testing contact-form.tsx', () => {
     expect(messageInput).toBeInTheDocument()
 
     expect(sendButton).toBeInTheDocument()
-
-
   })
 
   describe('Filling and submitting form', () => {
@@ -54,17 +52,17 @@ describe('Testing contact-form.tsx', () => {
       const sendMessageHandler = jest.fn((e) => {
         e.preventDefault()
       })
-  
+
       form.onsubmit = sendMessageHandler
       act(() => {
         fireEvent.change(emailInput, { target: { value: 'abc@email.com' } })
         fireEvent.change(nameInput, { target: { value: 'abc' } })
-        fireEvent.change(messageInput, { target: { value: 'comment' } })  
+        fireEvent.change(messageInput, { target: { value: 'comment' } })
       })
       await userEvent.click(sendButton)
 
       expect(sendMessageHandler).toHaveBeenCalled()
-      jest.runAllTimers();
+      jest.runAllTimers()
     })
 
     it('Unsuccessful response', async () => {
@@ -72,7 +70,7 @@ describe('Testing contact-form.tsx', () => {
       act(() => {
         fireEvent.change(emailInput, { target: { value: 'abc@email.com' } })
         fireEvent.change(nameInput, { target: { value: 'abc' } })
-        fireEvent.change(messageInput, { target: { value: 'comment' } })  
+        fireEvent.change(messageInput, { target: { value: 'comment' } })
       })
 
       await userEvent.click(sendButton)
