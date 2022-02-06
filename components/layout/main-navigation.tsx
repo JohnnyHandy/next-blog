@@ -5,7 +5,10 @@ import classes from './main-navigation.module.css'
 
 function MainNavigation() {
     return (
-        <header data-testid='main-navigation' className={classes.header}>
+        <header
+            data-testid='main-navigation'
+            className={classes.header}
+        >
             <Link href='/'>
                 <a>
                     <Logo />
@@ -15,6 +18,8 @@ function MainNavigation() {
                 <ul>
                     <li>
                         <Link href='/posts'>Posts</Link>
+                    </li>
+                    <li>
                         <Link href='/contact'>Contact</Link>
                     </li>
                 </ul>
