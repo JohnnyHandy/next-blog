@@ -19,7 +19,7 @@ describe('Testing contact-form.tsx', () => {
   let sendButton: HTMLElement
   let form: HTMLElement
   beforeEach(() => {
-    render(<ContactForm />, { container: document.body })
+    render(<ContactForm />)
     emailInput = screen.getByTestId('email-input')
     nameInput = screen.getByTestId('name-input')
     messageInput = screen.getByTestId('message-input')

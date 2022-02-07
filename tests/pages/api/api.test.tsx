@@ -33,7 +33,6 @@ describe('Test responses for contact api', () => {
   })
 
   it('Should retun status 201 on valid body', async () => {
-    //@ts-ignore
     const { req, res } = createMocks({
       method: 'POST',
       //@ts-ignore
@@ -43,16 +42,19 @@ describe('Test responses for contact api', () => {
         message: 'message',
       }),
     })
-    await contact(req, res)
     const insertOne = jest.fn().mockResolvedValueOnce({ acknowleged: true })
     const collection = jest.fn().mockReturnValueOnce({ insertOne })
-    jest.spyOn(MongoClient, 'connect').mockResolvedValueOnce({
-      //@ts-ignore
-      db: jest.fn().mockReturnValueOnce({ collection }),
-      //@ts-ignore
-      close: jest.fn(),
-    })
+    const connectSpy = jest
+      .spyOn(MongoClient, 'connect')
+      .mockResolvedValueOnce({
+        //@ts-ignore
+        db: jest.fn().mockReturnValueOnce({ collection }),
+        //@ts-ignore
+        close: jest.fn(),
+      })
 
+    await contact(req, res)
+    expect(connectSpy).toHaveBeenCalled()
     expect(res._getStatusCode()).toBe(201)
   })
 
@@ -67,12 +69,14 @@ describe('Test responses for contact api', () => {
         message: 'message',
       }),
     })
-    await contact(req, res)
 
     const connectSpy = jest
       .spyOn(MongoClient, 'connect')
       //@ts-ignore
       .mockRejectedValueOnce(new Error())
+
+    await contact(req, res)
+
     expect(connectSpy).toHaveBeenCalled()
     expect(res._getStatusCode()).toBe(500)
   })
