@@ -32,7 +32,7 @@ describe('Test responses for contact api', () => {
     expect(res._getStatusCode()).toBe(422)
   })
 
-  it('Should retun status 201 on valid body', async () => {
+  it('Should retun status 201 on valid body ', async () => {
     const { req, res } = createMocks({
       method: 'POST',
       //@ts-ignore
