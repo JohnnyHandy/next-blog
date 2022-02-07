@@ -22,10 +22,10 @@ function PostContent(props: { post: Post }) {
     },
     code(code: { language: string; value: string }) {
       const { language, value } = code
-      // eslint-disable-next-line react/no-children-prop
       return (
         <SyntaxHighlighter
           language={language}
+          // eslint-disable-next-line react/no-children-prop
           children={value}
           style={atomDark}
         />
