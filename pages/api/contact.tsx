@@ -39,7 +39,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     return
   }
 
-  client.close()
+  client?.close()
   res
     .status(201)
     .json({ message: 'Successfully stored message!', newmessage: newMessage })
