@@ -8,12 +8,12 @@ import Image from 'next/image'
 
 function PostContent(props: { post: Post }) {
   const { post } = props
-  const imagePath = `/images/posts/${post.slug}/${post.image}`
+  const imagePath = `/images/posts/${post?.slug}/${post?.image}`
   const customRenderers = {
     image(image: { alt: string; src: string }) {
       return (
         <Image
-          src={`/images/posts/${post.slug}/${image.src}`}
+          src={`/images/posts/${post?.slug}/${image.src}`}
           alt={image.alt}
           width={600}
           height={300}
@@ -34,9 +34,9 @@ function PostContent(props: { post: Post }) {
   }
   return (
     <article className={classes.content} data-testid="post-content">
-      <PostHeader title={post.title} image={imagePath} />
+      <PostHeader title={post?.title} image={imagePath} />
       <ReactMarkdown renderers={customRenderers}>
-        {post.content as string}
+        {post?.content as string}
       </ReactMarkdown>
     </article>
   )
