@@ -1,22 +1,33 @@
-import Hero from "../components/home-page/hero"
-import FeaturedPosts from "../components/home-page/featured-posts"
-import { Post } from "../utils/types";
-function HomePage() {
-  const DUMMY_POSTS = [
-    {
-      title: 'Getting started with GraphQL',
-      image: 'graphql.png',
-      excerpt: 'GraphQL is a new layer of data that came to revolutionize web\'s development and user experience',
-      date: '2022-02-10',
-      slug: 'getting-started-with-graphql'
-    }
-  ] as Post[];
+import Head from 'next/head'
+import Hero from '../components/home-page/hero'
+import FeaturedPosts from '../components/home-page/featured-posts'
+import { Post } from '../utils/types'
+import { getFeaturedPosts } from '../utils/post-util'
+function HomePage(props: { posts: Post[] }) {
+  const { posts } = props
   return (
     <>
+      <Head>
+        <title> Roger Blog </title>
+        <meta
+          name="description"
+          content="I post about programming and web development"
+        />
+      </Head>
       <Hero />
-      <FeaturedPosts posts={DUMMY_POSTS} />
+      <FeaturedPosts posts={posts} />
     </>
   )
+}
+
+export function getStaticProps() {
+  const featuredPosts = getFeaturedPosts()
+
+  return {
+    props: {
+      posts: featuredPosts,
+    },
+  }
 }
 
 export default HomePage
