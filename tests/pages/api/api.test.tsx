@@ -44,12 +44,14 @@ describe('Test responses for contact api', () => {
     })
     const insertOne = jest.fn().mockResolvedValueOnce({ acknowleged: true })
     const collection = jest.fn().mockReturnValueOnce({ insertOne })
-    const connectSpy = jest.spyOn(MongoClient, 'connect').mockResolvedValueOnce({
-      //@ts-ignore
-      db: jest.fn().mockReturnValueOnce({ collection }),
-      //@ts-ignore
-      close: jest.fn(),
-    })
+    const connectSpy = jest
+      .spyOn(MongoClient, 'connect')
+      .mockResolvedValueOnce({
+        //@ts-ignore
+        db: jest.fn().mockReturnValueOnce({ collection }),
+        //@ts-ignore
+        close: jest.fn(),
+      })
 
     await contact(req, res)
     expect(connectSpy).toHaveBeenCalled()
@@ -69,10 +71,9 @@ describe('Test responses for contact api', () => {
     })
 
     const connectSpy = jest
-    .spyOn(MongoClient, 'connect')
-    //@ts-ignore
-    .mockRejectedValueOnce(new Error())
-
+      .spyOn(MongoClient, 'connect')
+      //@ts-ignore
+      .mockRejectedValueOnce(new Error())
 
     await contact(req, res)
 
