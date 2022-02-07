@@ -1,6 +1,6 @@
 ﻿module.exports = {
   branches: 'main',
-  repositoryUrl: 'https://github.com/JohnnyHandy/next-events',
+  repositoryUrl: 'https://github.com/JohnnyHandy/next-blog',
   plugins: [
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
