@@ -36,11 +36,11 @@ describe('Test responses for contact api', () => {
     const { req, res } = createMocks({
       method: 'POST',
       //@ts-ignore
-      body: JSON.stringify({
+      body: {
         email: 'abc@email.com',
         name: 'myname',
         message: 'message',
-      }),
+      },
     })
     const insertOne = jest.fn().mockResolvedValueOnce({ acknowleged: true })
     const collection = jest.fn().mockReturnValueOnce({ insertOne })

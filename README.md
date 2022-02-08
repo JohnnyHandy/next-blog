@@ -1,3 +1,7 @@
+![](https://github.com/JohnnyHandy/next-blog/workflows/CI/badge.svg?branch=main&even=push)
+
+[![codecov](https://codecov.io/gh/JohnnyHandy/next-blog/branch/main/graph/badge.svg?token=QAJZYF3XZJ)](https://codecov.io/gh/JohnnyHandy/next-blog)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
