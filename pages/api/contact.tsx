@@ -2,7 +2,8 @@
 import { MongoClient, ObjectId } from 'mongodb'
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { email, name, message } = JSON.parse(req.body)
+  const { email, name, message } =
+    typeof req.body === 'string' ? JSON.parse(req.body) : req.body
   if (
     !email ||
     !email.includes('@') ||
